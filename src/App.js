@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+// ========== IMPORTS ==========
+import { useState, useEffect } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
+// ----- COMPONENTS -----
+import Nav from './components/Nav';
+import Footer from './components/Footer';
+// ----- PAGES -----
+import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
 
+// ========== DEFINE the COMPONENT ==========
 function App() {
+  // ----- Return some JSX -----
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Nav />
+      <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
+        <Route path='/dashboard'>
+          <Dashboard />
+        </Route>
+      </Switch>
+      <Footer />
     </div>
   );
 }
 
+// ========== EXPORT ==========
 export default App;
