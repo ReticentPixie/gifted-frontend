@@ -14,7 +14,7 @@ const Dashboard = (props) => {
                 */}
             <h1>Dashboard</h1>
             <NewTransaction createTransaction={props.createTransaction}/>
-            {/* <table>
+            <table>
                 <thead>
                     <th>Event</th>
                     <th>Recipient</th>
@@ -29,7 +29,7 @@ const Dashboard = (props) => {
                         </tr>
                     ))}
                 </tbody>
-            </table> */}
+            </table>
         </div>
     )
 }
