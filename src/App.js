@@ -1,4 +1,6 @@
-// ========== IMPORTS ==========
+// =======================================
+//              IMPORTS
+// =======================================
 import { useState, useEffect, useRef } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 // ----- Components -----
@@ -7,13 +9,16 @@ import Footer from './components/Footer';
 // ----- Pages -----
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
+import Show from './pages/Dashboard';
 // ----- Styles -----
 import './App.css';
 // ----- Google Firebase -----
 import { auth } from './services/firebase';
 
 
-// ========== DEFINE the COMPONENT ==========
+// =======================================
+//       DEFINE the COMPONENT
+// =======================================
 function App() {
   // ----- Initialize useState and useRef -----
   const [ user, setUser ] = useState(null);
@@ -21,30 +26,29 @@ function App() {
   const fetchData = useRef(null);
 
   // ----- API URLs -----
-  // TODO: format API_URL to attach extension for transactions/gifts/recipients/events based on help function
-  const API_URL='http://localhost:3001/api/transactions'     // for development
+  const API_URL='http://localhost:3001/api/'                  // for development
   // TODO: add the heroku API_URL
 
-  // ----- Transaction Helper Functions -----
+  // ------------------------------------------------ 
+  //      START - Transaction Helper Functions
+  // ------------------------------------------------
   const getTransactions = async () => {
-    if(!user) return;
-    // get a secure id toke from our firebase user
-    const token = await user.getIdToken();
-    // console.log(token)
-    const response = await fetch(API_URL, {
+    if(!user) return;                                         // prevents function from running without a authenticated user
+    const token = await user.getIdToken();                    // get a secure id token from our firebase user
+    const response = await fetch(`${API_URL}/transactions`, {
       method: 'GET',
       headers: {
         'Authorization': 'Bearer ' + token
       }
     });
-    const transactions = await response.json();
-    setTransactions(transactions);
+    const transactions = await response.json();               // parse returned json data
+    setTransactions(transactions);                            // set transaction state using returned data
   }
 
   const createTransaction = async transaction => {
-    if(!user) return;                                       // check for authenticated user - if no user logged in exit function
-    const token = await user.getIdToken();                 // get a secure token from our firebase user
-    const data = {...transaction, managedBy: user.uid}     // attach logged in user's uid to the data sent to the server
+    if(!user) return;                                         // check for authenticated user - if no user logged in exit function
+    const token = await user.getIdToken();                    // get a secure token from our firebase user
+    const data = {...transaction, managedBy: user.uid}        // attach logged in user's uid to the data sent to the server
     await fetch(API_URL, {
       method: 'POST',
       headers: {
@@ -60,8 +64,12 @@ function App() {
   // creates a reference to our getTransactions function that persists between renders; this will help mitigate memory leaks
   // be sure to write this without implicit return otherwise it will return the getTransactions and a cleanup operation
   useEffect(() => {
-    fetchData.current = createTransaction;
+    fetchData.current = getTransactions;
   });
+  // ------------------------------------------------ 
+  //      END - Transaction Helper Functions
+  // ------------------------------------------------
+
 
   useEffect(() => {
     // sets up an observer to watch for changes to our user authentication state
@@ -80,12 +88,13 @@ function App() {
     return () => unsubscribe();     // clean up action - removes observer from member when not needed
   }, [user]);
 
+
   // ----- Return some JSX -----
   return (
     <div>
       <Header user={user}/>
       <Switch>
-        <Route exact path='/' render={() => (
+        <Route exact path='/' render={(props) => (
           user ? 
             <Redirect to='/dashboard' /> 
             : 
@@ -93,16 +102,19 @@ function App() {
           )} 
         />
         <Route path='/dashboard' render={() => (
-          user ?
+          user ? (
             <Dashboard 
               user={user}
               transactions={transactions}
               createTransaction={createTransaction}
-            />
-            :
-            <Redirect to='/' /> 
-          )}
-        />
+            /> 
+          ) : <Redirect to='/' /> 
+        )} />
+        <Route path='/transactions/:id' render={(props) => (
+          user ? (
+            <Show transaction={transactions.find(t => t._id === props.match.params.id)} /> 
+          ) : <Redirect to='/' />
+        )} />
       </Switch>
       <Footer />
     </div>
