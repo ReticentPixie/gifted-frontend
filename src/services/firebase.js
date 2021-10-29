@@ -1,6 +1,6 @@
 // ========== IMPORTS ==========
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 // ========== Firebase configuration ==========
 const firebaseConfig = {
