@@ -14,17 +14,42 @@ import { auth } from './services/firebase';
 
 // ========== DEFINE the COMPONENT ==========
 function App() {
-  // ----- Establish Needed State -----
+  // ----- Establish State -----
   const [ user, setUser ] = useState(null);
+  const [ transactions, setTransactions ] = useState(null);
 
   // ----- API URLs -----
-  // const API_URL='http://localhost:3001/api/'     // for development
+  const API_URL='http://localhost:3001/api/transactions'     // for development
   // TODO: add the heroku API_URL
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      setUser(user);
+  // ----- Transaction Helper Functions -----
+  const getTransactions = async () => {
+    if(!user) return;
+    // get a secure id toke from our firebase user
+    // const token = await user.getIdToken();
+    const response = await fetch(API_URL, {
+      method: 'GET',
+      // headers: {
+      //   'Authorization': 'Bearer ' + token
+      // }
     });
+    const transactions = await response.json();
+    setTransactions(transactions);
+  }
+
+  const createTransaction = async transaction => {
+    const data = {...transaction, managedBy: user.uid}     // attach logged in user's uid to the data sent to the server
+    await fetch (API_URL, {
+      method: 'POST',
+      headers: {'Content-type': 'Application/json'},
+      body: JSON.stringify(data)
+    })
+    getTransactions();      // refresh transaction list
+  }
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => setUser(user));
+    getTransactions();
     return () => unsubscribe;     // clean up action - removes observer from member when not needed
   }, [user]);
 
@@ -42,7 +67,11 @@ function App() {
         />
         <Route path='/dashboard' render={() => (
           user ?
-            <Dashboard user={user}/>
+            <Dashboard 
+              user={user}
+              transactions={transactions}
+              createTransaction={createTransaction}
+            />
             :
             <Redirect to='/' /> 
           )}
