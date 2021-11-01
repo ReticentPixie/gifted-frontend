@@ -24,6 +24,7 @@ function App() {
   const [ user, setUser ] = useState(null);
   const [ transactions, setTransactions ] = useState(null);
   const fetchData = useRef(null);
+  console.log(fetchData);
 
   // ----- API URLs -----
   const API_URL='http://localhost:3001/api'                  // for development
@@ -75,6 +76,7 @@ function App() {
     // sets up an observer to watch for changes to our user authentication state
     const unsubscribe = auth.onAuthStateChanged(user => {
       setUser(user);
+
       if(user) {
         // any time the user gets set to state the component re-renders and useEffect gets called again because user is in the dependency list
         // the getTransactions function doesn't remember any of its values though from the previous render - it creates a memory leak

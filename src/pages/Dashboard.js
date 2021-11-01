@@ -1,5 +1,6 @@
 // ========== IMPORTS ==========
 import { Helmet } from 'react-helmet'
+import { StyledMain, StyledDashboard } from '../styles'
 import NewTransaction from '../components/NewTransaction'
 import TransactionTable from '../components/TransactionsTable'
 
@@ -11,19 +12,25 @@ const Dashboard = (props) => {
     return (
         <>
             <Helmet>
-                <title>Dashboard | {props.user.displayName}</title>
+                <title>Gifted | {props.user.displayName}'s Dashboard</title>
                 <meta name='description' content='A centralized place to log and see your most recent gifts' />
                 <meta name='keywords' content='React, Gifting, Organization' />
             </Helmet>
-            <div>
+            <StyledMain>
                 {/* TODO: 
                     - button to add new transaction
                     - button to add new recipient profile
                 */}
-                <h1>Dashboard</h1>
-                <NewTransaction createTransaction={props.createTransaction}/>
-                <TransactionTable transactions={props.transactions} />
-            </div>
+                <StyledDashboard>
+                    <div className="dashboardBody">
+                        <div>
+                            <h1><span>Gifting </span>Dashboard</h1>
+                            <NewTransaction createTransaction={props.createTransaction}/>
+                            <TransactionTable transactions={props.transactions} />
+                        </div>
+                    </div>
+                </StyledDashboard>
+            </StyledMain>
         </>
     )
 }

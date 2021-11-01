@@ -1,9 +1,9 @@
 // ========== IMPORTS ==========
 import { Link } from 'react-router-dom'
 
+
 // ========== DEFINE ==========
 const TransactionTable = (props) => {
-    console.log(props);
     // ----- RETURN some JSX -----
     return (
         <table>

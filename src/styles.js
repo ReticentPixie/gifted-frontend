@@ -1,7 +1,6 @@
 // ========== IMPORTS ==========
 import styled from 'styled-components';
 
-// TODO - add styling to main body
 // TODO - add styling to 'add new transaction form'
 // TODO - add styling to recent transactions table
 
@@ -171,5 +170,37 @@ export const StyledHeader = styled.header`
                 }
             }
         }
+    }
+`;
+
+export const StyledDashboard = styled.section`
+    .dashboardBody {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .dashboardBody::before {
+        content: '';
+        background-image: url('https://images.pexels.com/photos/1303080/pexels-photo-1303080.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
+        background-size: cover;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        opacity: .15;
+    }
+
+    h1 {
+        position: relative;
+        text-align: center;
+    }
+
+    span {
+        font-family: 'Dancing Script', cursive;
+        font-size: 3em;
     }
 `
