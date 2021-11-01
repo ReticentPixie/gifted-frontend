@@ -23,11 +23,9 @@ const Dashboard = (props) => {
                 */}
                 <StyledDashboard>
                     <div className="dashboardBody">
-                        <div>
-                            <h1><span>Gifting </span>Dashboard</h1>
-                            <NewTransaction createTransaction={props.createTransaction}/>
-                            <TransactionTable transactions={props.transactions} />
-                        </div>
+                        <h1><span>Gifting </span>Dashboard</h1>
+                        <NewTransaction createTransaction={props.createTransaction}/>
+                        <TransactionTable transactions={props.transactions} />
                     </div>
                 </StyledDashboard>
             </StyledMain>

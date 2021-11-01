@@ -1,5 +1,6 @@
 // ========== IMPORTS ==========
 import { useState } from 'react';
+import { StyledForm } from '../styles';
 
 // ========== DEFINE ==========
 const NewTransaction = (props) => {
@@ -36,21 +37,20 @@ const NewTransaction = (props) => {
     // ----- RETURN some JSX -----
     return (
         <div className='newTransactionForm'>
-            <h1>Log A New Gift</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Event
-                    <input 
-                        onChange={handleChange}
-                        value={formState.eventId}
-                        name='eventId'
-                        type='text'
-                    />
-                </label>
+            <StyledForm onSubmit={handleSubmit}>
                 <label>Recipient
                     <input 
                         onChange={handleChange}
                         value={formState.recipientId}
                         name='recipientId'
+                        type='text'
+                    />
+                </label>
+                <label>Event
+                    <input 
+                        onChange={handleChange}
+                        value={formState.eventId}
+                        name='eventId'
                         type='text'
                     />
                 </label>
@@ -70,8 +70,12 @@ const NewTransaction = (props) => {
                         type='text'
                     />
                 </label>
-                <input type='submit' value='Log Gift' />
-            </form>
+                <input className="hvr-grow" type='submit' value='Log Gift' />
+            </StyledForm>
+            <h1>--OR--</h1>
+            <StyledForm>
+                <input className="hvr-grow" type="submit" value="New Recipient" />
+            </StyledForm>
         </div>
     )
 }
