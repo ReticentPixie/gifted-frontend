@@ -5,6 +5,14 @@ import styled from 'styled-components';
 // TODO - add styling to 'add new transaction form'
 // TODO - add styling to recent transactions table
 
+// ---------- STYLED MAIN ----------
+export const StyledMain = styled.main`
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
 // ---------- FOOTER ----------
 export const StyledFooter = styled.footer`
     display: flex;
@@ -43,12 +51,7 @@ export const StyledFooter = styled.footer`
 `;
 
 // ---------- HOMEPAGE ----------
-export const StyledHome = styled.main`
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+export const StyledHome = styled.section`
     img {
         width: 100%;
         object-fit: cover;
