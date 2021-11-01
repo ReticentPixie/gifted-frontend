@@ -6,6 +6,7 @@ import TransactionTable from '../components/TransactionsTable'
 
 // ========== DEFINE ==========
 const Dashboard = (props) => {
+    console.log(props)
     // ----- RETURN some JSX -----
     return (
         <>

@@ -26,7 +26,7 @@ function App() {
   const fetchData = useRef(null);
 
   // ----- API URLs -----
-  const API_URL='http://localhost:3001/api/'                  // for development
+  const API_URL='http://localhost:3001/api'                  // for development
   // TODO: add the heroku API_URL
 
   // ------------------------------------------------ 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 // ========== DEFINE ==========
 const TransactionTable = (props) => {
+    console.log(props);
     // ----- RETURN some JSX -----
     return (
         <table>
@@ -12,7 +13,7 @@ const TransactionTable = (props) => {
                 <th>Gift</th>
                 <th>Actions</th>
             </thead>
-            {/* <tbody>
+            <tbody>
                 {
                     props.transactions.map(t => (
                         <tr key={t._id}>
@@ -23,7 +24,7 @@ const TransactionTable = (props) => {
                         </tr>
                     ))
                 }
-            </tbody> */}
+            </tbody>
         </table>
     )
 }
