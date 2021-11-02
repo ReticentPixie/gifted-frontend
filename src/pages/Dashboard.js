@@ -1,6 +1,6 @@
 // ========== IMPORTS ==========
 import { Helmet } from 'react-helmet'
-import { StyledMain, StyledDashboard } from '../styles'
+import { StyledMain, StyledDashboard, StyledTable, StyledForm } from '../styles'
 import NewTransaction from '../components/NewTransaction'
 import TransactionTable from '../components/TransactionsTable'
 
@@ -8,6 +8,7 @@ import TransactionTable from '../components/TransactionsTable'
 // ========== DEFINE ==========
 const Dashboard = (props) => {
     console.log(props)
+    
     // ----- RETURN some JSX -----
     return (
         <>
@@ -17,10 +18,6 @@ const Dashboard = (props) => {
                 <meta name='keywords' content='React, Gifting, Organization' />
             </Helmet>
             <StyledMain>
-                {/* TODO: 
-                    - button to add new transaction
-                    - button to add new recipient profile
-                */}
                 <StyledDashboard>
                     <div className="dashboardBody">
                         <h1><span>Gifting </span>Dashboard</h1>

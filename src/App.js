@@ -3,16 +3,16 @@
 // =======================================
 import { useState, useEffect, useRef } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-// ----- Components -----
+// ---------- Components ----------
 import Header from './components/Header';
-import Footer from './components/Footer';
-// ----- Pages -----
+import Footer from './components/Footer/Footer';
+// ---------- Pages ----------
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Show from './pages/Dashboard';
-// ----- Styles -----
+// ---------- Styles ----------
 import './App.css';
-// ----- Google Firebase -----
+// ---------- Google Firebase ----------
 import { auth } from './services/firebase';
 
 
@@ -42,8 +42,11 @@ function App() {
         'Authorization': 'Bearer ' + token
       }
     });
-    const transactions = await response.json();               // parse returned json data
-    setTransactions(transactions);                            // set transaction state using returned data
+    const allTransactions = await response.json();               // parse returned json data
+    const usersTransactions = allTransactions.filter(t => {
+      if(t.managedBy === user.uid) return t
+    })
+    setTransactions(usersTransactions);                            // set transaction state using returned data
   }
 
   const createTransaction = async transaction => {
@@ -90,13 +93,14 @@ function App() {
     return () => unsubscribe();     // clean up action - removes observer from member when not needed
   }, [user]);
 
+  console.log(transactions)
 
   // ----- Return some JSX -----
   return (
     <div>
       <Header user={user}/>
       <Switch>
-        <Route exact path='/' render={(props) => (
+        <Route exact path='/' render={() => (
           user ? 
             <Redirect to='/dashboard' /> 
             : 
@@ -112,11 +116,11 @@ function App() {
             /> 
           ) : <Redirect to='/' /> 
         )} />
-        <Route path='/transactions/:id' render={(props) => (
+        {/* <Route path='/transactions/:id' render={(props) => (
           user ? (
             <Show transaction={transactions.find(t => t._id === props.match.params.id)} /> 
           ) : <Redirect to='/' />
-        )} />
+        )} /> */}
       </Switch>
       <Footer />
     </div>

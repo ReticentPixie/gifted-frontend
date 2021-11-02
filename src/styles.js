@@ -192,7 +192,7 @@ export const StyledDashboard = styled.section`
         }
     }
     
-    .dashboardBody::before {
+    /* .dashboardBody::before {
         content: '';
         background-image: url('https://images.pexels.com/photos/1303080/pexels-photo-1303080.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
         background-size: cover;
@@ -202,7 +202,7 @@ export const StyledDashboard = styled.section`
         bottom: 0px;
         left: 0px;
         opacity: .15;
-    }
+    } */
 
     h1 {
         position: relative;
@@ -281,7 +281,7 @@ export const StyledTable = styled.table`
     tr:nth-child(even) {
         background-color: slategray;
     }
-    @media(min-width: 975px) {
+  @media(min-width: 975px) {
         width: 60%;
         height: 50%;
     }
