@@ -1,9 +1,14 @@
-// ========== IMPORTS ==========
+// =======================================
+//              IMPORTS
+// =======================================
 import { Link } from 'react-router-dom'
-import { logOut } from '../services/firebase'
-import { StyledHeader } from '../styles'
+import { logOut } from '../../services/firebase'
+import { StyledHeader } from './styles'
 
-// ========== DEFINE ==========
+
+// =======================================
+//       DEFINE the COMPONENT
+// =======================================
 const Header = (props) => {
     // ----- RETURN some JSX -----
     return (
@@ -14,9 +19,9 @@ const Header = (props) => {
                     <nav>
                         <ul>
                             <li>Welcome, {props.user.displayName}</li>
-                            <li><img src = {props.user.photoURL}/></li>
+                            <li><img src={props.user.photoURL} alt={props.user.displayName}/></li>
                             <li className='hvr-grow'><Link to='/dashboard'>Dashboard</Link></li>
-                            <li className='hvr-grow' onClick={logOut}>Logout</li>
+                            <li className='hvr-grow' onClick={logOut}>LogOut</li>
                         </ul>
                     </nav>
                 </StyledHeader>
@@ -27,5 +32,7 @@ const Header = (props) => {
     )
 }
 
-// ========== EXPORT ==========
+// =======================================
+//       EXPORT the COMPONENT
+// =======================================
 export default Header
