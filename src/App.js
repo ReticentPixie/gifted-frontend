@@ -8,7 +8,7 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 // ---------- Pages ----------
 import Home from './pages/Home/Home'
-import DashBoard from './pages/Dashboard'
+import Dashboard from './pages/Dashboard'
 // ---------- Styles ----------
 import './App.css'
 // ---------- Google Firebase ----------
