@@ -44,7 +44,9 @@ function App() {
     })
     const allTransactions = await respons.json();                   // parse returned json data
     const usersTransactions = allTransactions.filter(t => {         // filter data for only those managed by the user
-        if(t.managedBy === user.uid) return t               
+        if(t.managedBy === user.uid) {
+          return t
+        }
     })
     setTransactions(usersTransactions);                             // set transaction state using returned data
     console.log(usersTransactions)
@@ -65,6 +67,20 @@ function App() {
     })
     getTransactions();                                               // refresh the transaction list
   }
+
+  // ---------- DELETE a Transaction ----------
+  const deleteTransaction = async (id) => {
+    if(!user) return;                                               // prevent an API call without an authenticated user
+    const token = await user.getIdToken();                          // get a secure id token from firebase user
+    await fetch(`${API_URL}/transactions/` + id, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    })
+    getTransactions();                                              // refresh transactions list
+  }
+
   // =================================================
   //    END - Transaction Helper Functions
   // =================================================
@@ -74,7 +90,6 @@ function App() {
   // =================================================
   // ----- create a reference to getTransactions that will persis between renders to mitgate memory leaks -----
   useEffect(() => {
-    console.log('find the bug')
     fetchData.current = getTransactions
   })
 
@@ -109,6 +124,7 @@ function App() {
               user={user} 
               transactions={transactions}
               createTransaction={createTransaction}
+              deleteTransaction={deleteTransaction}
             /> 
           ) : <Redirect to="/" />
         )} />

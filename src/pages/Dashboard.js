@@ -12,6 +12,13 @@ import { StyledTable } from '../styles'
 //       DEFINE the COMPONENT
 // =======================================
 const Dashboard = (props) => {
+    console.log(props)
+
+    const removeTransaction = (id) => {
+        console.log('made it here')
+        props.deleteTransaction(id);
+        // props.history.push('/');
+    }
     
     // =======================================
     //          RETURN some JSX
@@ -34,13 +41,16 @@ const Dashboard = (props) => {
                     </thead>
                     <tbody>
                         {
-                            props.transactions.map(t => (
-                                <tr key={t._id}>
-                                    <td>{t.eventId}</td>
-                                    <td>{t.recipientId}</td>
-                                    <td>{t.giftId}</td>
-                                </tr>
-                            ))
+                            props.transactions.map((t) => {
+                                return (
+                                    <tr key={t._id}>
+                                        <td>{t.eventId}</td>
+                                        <td>{t.recipientId}</td>
+                                        <td>{t.giftId}</td>
+                                        <td><button id='delete' onClick={() => {removeTransaction(t._id)}}>DELETE</button></td>
+                                    </tr>
+                                )
+                            })
                         }
                     </tbody>
                 </StyledTable>
