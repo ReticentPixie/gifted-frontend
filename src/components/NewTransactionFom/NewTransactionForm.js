@@ -74,7 +74,7 @@ const NewTransactionForm = (props) => {
                         onChange={handleChange}
                         value={formState.date}
                         name='date'
-                        type='text'
+                        type='date'
                     />
                 </label>
                 <input className="hvr-grow" type='submit' value='Log Gift' />
