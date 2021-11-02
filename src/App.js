@@ -7,7 +7,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 // ---------- Pages ----------
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import Dashboard from './pages/Dashboard';
 import Show from './pages/Dashboard';
 // ---------- Styles ----------
