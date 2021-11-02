@@ -1,131 +1,124 @@
-// =======================================
+// =================================================
 //              IMPORTS
-// =======================================
-import { useState, useEffect, useRef } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+// =================================================
+import { useState, useEffect, useRef } from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
 // ---------- Components ----------
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 // ---------- Pages ----------
-import Home from './pages/Home/Home';
-import Dashboard from './pages/Dashboard';
-import Show from './pages/Dashboard';
+import Home from './pages/Home/Home'
+import DashBoard from './pages/Dashboard'
 // ---------- Styles ----------
-import './App.css';
+import './App.css'
 // ---------- Google Firebase ----------
-import { auth } from './services/firebase';
+import { auth } from './services/firebase'
 
 
-// =======================================
-//       DEFINE the COMPONENT
-// =======================================
+// =================================================
+//              DEFINE the COMPONENT
+// =================================================
 function App() {
-  // ----- Initialize useState and useRef -----
-  const [ user, setUser ] = useState(null);
-  const [ transactions, setTransactions ] = useState(null);
+
+  // ----- Initialize useState -----
+  const [ user, setUser ] = useState(null)
+  const [ transactions, setTransactions ] = useState([])
   const fetchData = useRef(null);
-  console.log(fetchData);
 
-  // ----- API URLs -----
-  const API_URL='http://localhost:3001/api'                  // for development
-  // TODO: add the heroku API_URL
+  // ---------- API URLS ----------
+  const API_URL=`http://localhost:3001/api`               // development url
+  // TODO: add heroku url                                 // production url
 
-  // ------------------------------------------------ 
-  //      START - Transaction Helper Functions
-  // ------------------------------------------------
+  // =================================================
+  //    START - Transaction Helper Functions
+  // =================================================
+  // ---------- GET Transactions ----------
   const getTransactions = async () => {
-    if(!user) return;                                         // prevents function from running without a authenticated user
-    const token = await user.getIdToken();                    // get a secure id token from our firebase user
-    const response = await fetch(`${API_URL}/transactions`, {
-      method: 'GET',
-      headers: {
-        'Authorization': 'Bearer ' + token
-      }
-    });
-    const allTransactions = await response.json();               // parse returned json data
-    const usersTransactions = allTransactions.filter(t => {
-      if(t.managedBy === user.uid) return t
+    if(!user) return;                                               // prevent an API call without an authenticated user
+    const token = await user.getIdToken();                          // get a secure id token from firebase user
+    const respons = await fetch(`${API_URL}/transactions`, {        // make fetch request to API - include headers for authentication on backend
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
     })
-    setTransactions(usersTransactions);                            // set transaction state using returned data
+    const allTransactions = await respons.json();                   // parse returned json data
+    const usersTransactions = allTransactions.filter(t => {         // filter data for only those managed by the user
+        if(t.managedBy === user.uid) return t               
+    })
+    setTransactions(usersTransactions);                             // set transaction state using returned data
+    console.log(usersTransactions)
   }
 
+  // ---------- Create A NEW Transaction ----------
   const createTransaction = async transaction => {
-    if(!user) return;                                         // check for authenticated user - if no user logged in exit function
-    const token = await user.getIdToken();                    // get a secure token from our firebase user
-    const data = {...transaction, managedBy: user.uid}        // attach logged in user's uid to the data sent to the server
-    await fetch(API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'Application/json',
-        'Authorization': 'Bearer ' + token,
-      },
-      body: JSON.stringify(data)
+    if(!user) return;                                               // prevents non-authenticated reqests to create data
+    const token = await user.getIdToken();                          // get a secure id token from firebase user
+    const data = {...transaction, managedBy: user.uid}              // create the new transaction from form values and add the managedBy field
+    await fetch(`${API_URL}/transactions`, {                        // make fetch request to API
+        method: 'POST',
+        headers: {
+            'Content-type': 'Application/json',
+            'Authorization': 'Bearer ' + token,
+        },
+        body: JSON.stringify(data)
     })
-    getTransactions();      // refresh transaction list
+    getTransactions();                                               // refresh the transaction list
   }
+  // =================================================
+  //    END - Transaction Helper Functions
+  // =================================================
 
-  // used to create a side effect when the app first loads
-  // creates a reference to our getTransactions function that persists between renders; this will help mitigate memory leaks
-  // be sure to write this without implicit return otherwise it will return the getTransactions and a cleanup operation
+  // =================================================
+  //           Initialize useEffect
+  // =================================================
+  // ----- create a reference to getTransactions that will persis between renders to mitgate memory leaks -----
   useEffect(() => {
-    fetchData.current = getTransactions;
-  });
-  // ------------------------------------------------ 
-  //      END - Transaction Helper Functions
-  // ------------------------------------------------
+    console.log('find the bug')
+    fetchData.current = getTransactions
+  })
 
 
+  // ----- Establish Observer to watch for changes in user authentication -----
   useEffect(() => {
-    // sets up an observer to watch for changes to our user authentication state
     const unsubscribe = auth.onAuthStateChanged(user => {
-      setUser(user);
-
-      if(user) {
-        // any time the user gets set to state the component re-renders and useEffect gets called again because user is in the dependency list
-        // the getTransactions function doesn't remember any of its values though from the previous render - it creates a memory leak
-        // sometimes we need to persist the function values between renders - i.e., we need a way for React to remember this function between renders to avoid creating infinite requests
-        // useRef is a special Hook that allows us to create mutable ref objects
-        fetchData.current();        // is now a reference to the useEffect above that will allow us to persist data within our create/get functions
+      setUser(user);                                                // set user to current user
+      if(user) {                                                    // if user has been authenticated fetch data
+        fetchData.current()
       } else {
-        setTransactions([]);        // to clear state if user logs out
+        setTransactions([])                                         // else setTransactions to empty array for security
       }
-    });
-    return () => unsubscribe();     // clean up action - removes observer from member when not needed
-  }, [user]);
+    })
+    return () => unsubscribe                                        //cean up action - removes observer
+  }, [user])
 
-  console.log(transactions)
-
-  // ----- Return some JSX -----
+  // =================================================
+  //           RETURN SOME JSX
+  // =================================================
   return (
-    <div>
-      <Header user={user}/>
+    <>
+      <Header user={user} />
       <Switch>
-        <Route exact path='/' render={() => (
-          user ? 
-            <Redirect to='/dashboard' /> 
-            : 
-            <Home />
-          )} 
+        <Route exact path="/" render={() =>
+          user ? <Redirect to="/dashboard" /> : <Home />
+          }
         />
-        <Route path='/dashboard' render={() => (
+        <Route path="/dashboard" render={() => (
           user ? (
             <Dashboard 
-              user={user}
+              user={user} 
               transactions={transactions}
               createTransaction={createTransaction}
             /> 
-          ) : <Redirect to='/' /> 
+          ) : <Redirect to="/" />
         )} />
-        {/* <Route path='/transactions/:id' render={(props) => (
-          user ? (
-            <Show transaction={transactions.find(t => t._id === props.match.params.id)} /> 
-          ) : <Redirect to='/' />
-        )} /> */}
       </Switch>
       <Footer />
-    </div>
-  );
+    </>
+  )
 }
 
-// ========== EXPORT ==========
-export default App;
+// =======================================
+//       EXPORT the COMPONENT
+// =======================================
+export default App

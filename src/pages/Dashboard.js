@@ -1,8 +1,11 @@
-// ========== IMPORTS ==========
+// =======================================
+//              IMPORTS
+// =======================================
 import { Helmet } from 'react-helmet'
 import { StyledMain, StyledDashboard, StyledTable, StyledForm } from '../styles'
-import NewTransaction from '../components/NewTransaction'
+// ---------- Components ----------
 import TransactionTable from '../components/TransactionsTable'
+import NewTransactionForm from '../components/NewTransactionFom/NewTransactionForm'
 
 
 // ========== DEFINE ==========
@@ -21,7 +24,7 @@ const Dashboard = (props) => {
                 <StyledDashboard>
                     <div className="dashboardBody">
                         <h1><span>Gifting </span>Dashboard</h1>
-                        <NewTransaction createTransaction={props.createTransaction}/>
+                        <NewTransactionForm createTransaction={props.createTransaction}/>
                         <TransactionTable transactions={props.transactions} />
                     </div>
                 </StyledDashboard>

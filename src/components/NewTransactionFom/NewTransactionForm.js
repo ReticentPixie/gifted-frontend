@@ -1,17 +1,26 @@
-// ========== IMPORTS ==========
-import { useState } from 'react';
-import { StyledForm } from '../styles';
+// =======================================
+//              IMPORTS
+// =======================================
+import { useState } from 'react'
+import { StyledForm } from './styles'
 
-// ========== DEFINE ==========
-const NewTransaction = (props) => {
+
+// =======================================
+//       DEFINE the COMPONENT
+// =======================================
+const NewTransactionForm = (props) => {
     // ----- Initialize State -----
-    const [ formState, setFormState ] = useState({
+    const [ formState, setFormState ] = useState({          // set initial state to blank input fields
         eventId: '',
         giftId: '',
         recipientId: '',
+        date: '',
     })
 
-    // ----- Form Helper Functions -----
+    // =======================================
+    //          FORM HELPER FUNCTIONS
+    // =======================================
+    // ----- Handle Change on Form -----
     const handleChange = event => {
         setFormState(prevState => ({
             ...prevState,
@@ -19,14 +28,11 @@ const NewTransaction = (props) => {
         }))
     }
 
+    // ----- Handle Submit on Form -----
     const handleSubmit = event => {
-        // prevent form default behavior
-        event.preventDefault();
-        // TODO: add user's uid to form
-        // call createTransaction to add form values to existing data
-        props.createTransaction(formState);
-        // clear the form after it has been submitted
-        setFormState({
+        event.preventDefault();                             // prevent default form behavior
+        props.createTransaction(formState);                 // call createTransaction to add form values to existing data
+        setFormState({                                      // clear the form after submission
             eventId: '',
             giftId: '',
             recipientId: '',
@@ -34,9 +40,10 @@ const NewTransaction = (props) => {
         })
     }
 
+
     // ----- RETURN some JSX -----
     return (
-        <div className='newTransactionForm'>
+        <>
             <StyledForm onSubmit={handleSubmit}>
                 <label>Recipient
                     <input 
@@ -72,13 +79,11 @@ const NewTransaction = (props) => {
                 </label>
                 <input className="hvr-grow" type='submit' value='Log Gift' />
             </StyledForm>
-            <h1>--OR--</h1>
-            <StyledForm>
-                <input className="hvr-grow" type="submit" value="New Recipient" />
-            </StyledForm>
-        </div>
+        </>
     )
 }
 
-// ========== EXPORT ==========
-export default NewTransaction
+// =======================================
+//       EXPORT the COMPONENT
+// =======================================
+export default NewTransactionForm
