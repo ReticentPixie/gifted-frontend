@@ -2,6 +2,7 @@
 //              IMPORTS
 // =======================================
 import { Helmet } from 'react-helmet'
+import { Link } from 'react-router-dom'
 // ---------- Components ----------
 import NewTransactionForm from '../components/NewTransactionFom/NewTransactionForm'
 // ---------- Styles ----------
@@ -13,9 +14,7 @@ import { StyledTable } from '../styles'
 // =======================================
 const Dashboard = (props) => {
     console.log(props)
-
-    const transactions = props.transactions
-    console.log(transactions)
+    // const transactions = props.transactions
 
     const removeTransaction = (id) => {
         console.log('made it here')
@@ -51,7 +50,8 @@ const Dashboard = (props) => {
                                 return (
                                     <tr key={t._id}>
                                         <td>{t.eventId.name}</td>
-                                        <td>{t.recipientId}</td>
+                                        {/* <td>{t.recipientId}</td> */}
+                                        <td><Link to={`/recipients/${t.recipientId._id}`}>{t.recipientId.name}</Link></td>
                                         <td>{t.giftId}</td>
                                         <td><button id='delete' onClick={() => {removeTransaction(t._id)}}>DELETE</button></td>
                                     </tr>

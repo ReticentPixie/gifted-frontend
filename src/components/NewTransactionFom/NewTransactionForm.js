@@ -46,6 +46,16 @@ const NewTransactionForm = (props) => {
         <>
             <StyledForm onSubmit={handleSubmit}>
                 <label>Recipient
+                    {/* <select name="recipientId" value={formState.recipientId} onChange={handleChange}>
+                        <option>Select a Recipient</option>
+                        {
+                            props.recipients.map((r, index) => {
+                                return(
+                                    <option key={index} value={r._id}>{r.name}</option>
+                                )
+                            })
+                        }
+                    </select> */}
                     <input 
                         onChange={handleChange}
                         value={formState.recipientId}
@@ -55,17 +65,11 @@ const NewTransactionForm = (props) => {
                 </label>
                 <label>Event
                     <select name="eventId" value={formState.eventId} onChange={handleChange}>
-                        <option>Select an Event</option>
+                        <option key="">Select an Event</option>
                         {
-                            props.events.map((e) => {
+                            props.events.map((e, index) => {
                                 return (
-                                    <option value={e._id}>{e.name}</option>
-                                    // <input 
-                                    // onChange={handleChange}
-                                    // value={formState.eventId}
-                                    // name='eventId'
-                                    // type='text'
-                                    // />
+                                    <option key={index} value={e._id}>{e.name}</option>
                                 )
                             })
                         }

@@ -9,6 +9,7 @@ import Footer from './components/Footer/Footer'
 // ---------- Pages ----------
 import Home from './pages/Home/Home'
 import Dashboard from './pages/Dashboard'
+import Recipient from './pages/Recipient'
 // ---------- Styles ----------
 import './App.css'
 // ---------- Google Firebase ----------
@@ -24,8 +25,10 @@ function App() {
   const [ user, setUser ] = useState(null)
   const [ transactions, setTransactions ] = useState([])
   const [ events, setEvents ] = useState([])
+  const [ recipients, setRecipients ] = useState([])
   const fetchTransactions = useRef(null)
   const fetchEvents = useRef(null)
+  const fetchRecipients = useRef(null)
 
   // ---------- API URLS ----------
   const API_URL=`http://localhost:3001/api`               // development url
@@ -38,21 +41,22 @@ function App() {
   const getTransactions = async () => {
     if(!user) return;                                               // prevent an API call without an authenticated user
     const token = await user.getIdToken();                          // get a secure id token from firebase user
-    const respons = await fetch(`${API_URL}/transactions`, {        // make fetch request to API - include headers for authentication on backend
+    const response = await fetch(`${API_URL}/transactions`, {        // make fetch request to API - include headers for authentication on backend
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + token
         },
     })
-    const allTransactions = await respons.json();                   // parse returned json data
+    const allTransactions = await response.json();                   // parse returned json data
+    console.log(allTransactions)
     const usersTransactions = allTransactions.filter(t => {         // filter data for only those managed by the user
         if(t.managedBy === user.uid) {
           return t
         }
     })
-    console.log(usersTransactions)
     setTransactions(usersTransactions)                             // set transaction state using returned data
   }
+  console.log(transactions)
 
   // ---------- Create A NEW Transaction ----------
   const createTransaction = async transaction => {
@@ -92,17 +96,41 @@ function App() {
   const getEvents = async () => {
     if(!user) return;                                               // prevent an API call without an authenticated user
     const token = await user.getIdToken();                          // get a secure id token from firebase user
-    const respons = await fetch(`${API_URL}/events`, {        // make fetch request to API - include headers for authentication on backend
+    const response = await fetch(`${API_URL}/events`, {        // make fetch request to API - include headers for authentication on backend
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + token
         }
     })
-    const events = await respons.json();                   // parse returned json data
+    const events = await response.json();                   // parse returned json data
     setEvents(events);                             // set transaction state using returned data
-    console.log(events)
   }
+  // =================================================
+  //    END - EVENT Helper Functions
+  // =================================================
 
+  // =================================================
+  //    START - RECIPIENT Helper Functions
+  // =================================================
+  // ---------- GET Transactions ----------
+  const getRecipients = async () => {
+    if(!user) return;                                               // prevent an API call without an authenticated user
+    const token = await user.getIdToken();                          // get a secure id token from firebase user
+    const response = await fetch(`${API_URL}/recipients`, {          // make fetch request to API - include headers for authentication on backend
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
+    })
+    const allRecipients = await response.json();                     // parse returned json data
+    const usersRecipients = allRecipients.filter(r => {             // filter data for only data managed by the user
+        if(r.managedBy === user.uid) {
+          return r
+        }
+    })
+    setRecipients(usersRecipients)                                // set recipient state using returned data
+  }
+  console.log(recipients)
 
   // =================================================
   //           Initialize useEffect
@@ -111,6 +139,7 @@ function App() {
   useEffect(() => {
     fetchTransactions.current = getTransactions
     fetchEvents.current = getEvents
+    fetchRecipients.current = getRecipients
   })
 
 
@@ -121,8 +150,10 @@ function App() {
       if(user) {                                                    // if user has been authenticated fetch data
         fetchTransactions.current()
         fetchEvents.current()
+        fetchRecipients.current()
       } else {
         setTransactions([])                                         // else setTransactions to empty array for security
+        setRecipients([])
       }
     })
     return () => unsubscribe                                        //cean up action - removes observer
@@ -144,11 +175,21 @@ function App() {
             <Dashboard 
               user={user} 
               transactions={transactions}
+              recipients={recipients}
               events={events}
               createTransaction={createTransaction}
               deleteTransaction={deleteTransaction}
             /> 
           ) : <Redirect to="/" />
+        )} />
+        <Route path="/recipients/:id" render={(props) => (
+          user ? (
+            <Recipient
+                user={user}
+                recipient={recipients.find(c => c._id === props.match.params.id)}
+                transactions={transactions}
+              />
+              ) : <Redirect to="/" />
         )} />
       </Switch>
       <Footer />
