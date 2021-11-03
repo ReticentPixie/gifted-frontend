@@ -14,7 +14,7 @@ export const StyledFooter = styled.footer`
     justify-content: center;
     font-style: italic;
     background-color: whitesmoke;
-    position: fixed;
+    /* position: fixed; */
     bottom: 0;
     left: 0;
     width: 100%;

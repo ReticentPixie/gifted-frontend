@@ -18,7 +18,7 @@ export const StyledForm = styled.form`
         align-items: center;
         font-weight: 800;
     }
-    input {
+    input, select {
         margin-left: 1rem;
         width: 75%;
         height: 2rem;

@@ -55,6 +55,7 @@ const NewTransactionForm = (props) => {
                 </label>
                 <label>Event
                     <select name="eventId" value={formState.eventId} onChange={handleChange}>
+                        <option>Select an Event</option>
                         {
                             props.events.map((e) => {
                                 return (
