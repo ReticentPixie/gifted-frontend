@@ -14,6 +14,9 @@ import { StyledTable } from '../styles'
 const Dashboard = (props) => {
     console.log(props)
 
+    const transactions = props.transactions
+    console.log(transactions)
+
     const removeTransaction = (id) => {
         console.log('made it here')
         props.deleteTransaction(id);
@@ -32,7 +35,10 @@ const Dashboard = (props) => {
             </Helmet>
             <div>
                 <h1><span>Gifting </span>Dashboard</h1>
-                <NewTransactionForm createTransaction={props.createTransaction} />
+                <NewTransactionForm 
+                    createTransaction={props.createTransaction} 
+                    events={props.events}
+                />
                 <StyledTable>
                     <thead>
                         <th>Event</th>
@@ -44,7 +50,7 @@ const Dashboard = (props) => {
                             props.transactions.map((t) => {
                                 return (
                                     <tr key={t._id}>
-                                        <td>{t.eventId}</td>
+                                        <td>{t.eventId.name}</td>
                                         <td>{t.recipientId}</td>
                                         <td>{t.giftId}</td>
                                         <td><button id='delete' onClick={() => {removeTransaction(t._id)}}>DELETE</button></td>

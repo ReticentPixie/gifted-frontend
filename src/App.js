@@ -23,7 +23,9 @@ function App() {
   // ----- Initialize useState -----
   const [ user, setUser ] = useState(null)
   const [ transactions, setTransactions ] = useState([])
-  const fetchData = useRef(null);
+  const [ events, setEvents ] = useState([])
+  const fetchTransactions = useRef(null)
+  const fetchEvents = useRef(null)
 
   // ---------- API URLS ----------
   const API_URL=`http://localhost:3001/api`               // development url
@@ -40,7 +42,7 @@ function App() {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + token
-        }
+        },
     })
     const allTransactions = await respons.json();                   // parse returned json data
     const usersTransactions = allTransactions.filter(t => {         // filter data for only those managed by the user
@@ -48,8 +50,8 @@ function App() {
           return t
         }
     })
-    setTransactions(usersTransactions);                             // set transaction state using returned data
     console.log(usersTransactions)
+    setTransactions(usersTransactions)                             // set transaction state using returned data
   }
 
   // ---------- Create A NEW Transaction ----------
@@ -80,17 +82,35 @@ function App() {
     })
     getTransactions();                                              // refresh transactions list
   }
-
   // =================================================
   //    END - Transaction Helper Functions
   // =================================================
+
+  // =================================================
+  //    START - EVENT Helper Functions
+  // =================================================
+  const getEvents = async () => {
+    if(!user) return;                                               // prevent an API call without an authenticated user
+    const token = await user.getIdToken();                          // get a secure id token from firebase user
+    const respons = await fetch(`${API_URL}/events`, {        // make fetch request to API - include headers for authentication on backend
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    const events = await respons.json();                   // parse returned json data
+    setEvents(events);                             // set transaction state using returned data
+    console.log(events)
+  }
+
 
   // =================================================
   //           Initialize useEffect
   // =================================================
   // ----- create a reference to getTransactions that will persis between renders to mitgate memory leaks -----
   useEffect(() => {
-    fetchData.current = getTransactions
+    fetchTransactions.current = getTransactions
+    fetchEvents.current = getEvents
   })
 
 
@@ -99,7 +119,8 @@ function App() {
     const unsubscribe = auth.onAuthStateChanged(user => {
       setUser(user);                                                // set user to current user
       if(user) {                                                    // if user has been authenticated fetch data
-        fetchData.current()
+        fetchTransactions.current()
+        fetchEvents.current()
       } else {
         setTransactions([])                                         // else setTransactions to empty array for security
       }
@@ -123,6 +144,7 @@ function App() {
             <Dashboard 
               user={user} 
               transactions={transactions}
+              events={events}
               createTransaction={createTransaction}
               deleteTransaction={deleteTransaction}
             /> 

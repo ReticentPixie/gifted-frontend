@@ -9,6 +9,7 @@ import { StyledForm } from './styles'
 //       DEFINE the COMPONENT
 // =======================================
 const NewTransactionForm = (props) => {
+    console.log(props)
     // ----- Initialize State -----
     const [ formState, setFormState ] = useState({          // set initial state to blank input fields
         eventId: '',
@@ -24,7 +25,7 @@ const NewTransactionForm = (props) => {
     const handleChange = event => {
         setFormState(prevState => ({
             ...prevState,
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value,
         }))
     }
 
@@ -40,7 +41,6 @@ const NewTransactionForm = (props) => {
         })
     }
 
-
     // ----- RETURN some JSX -----
     return (
         <>
@@ -54,12 +54,21 @@ const NewTransactionForm = (props) => {
                     />
                 </label>
                 <label>Event
-                    <input 
-                        onChange={handleChange}
-                        value={formState.eventId}
-                        name='eventId'
-                        type='text'
-                    />
+                    <select name="eventId" value={formState.eventId} onChange={handleChange}>
+                        {
+                            props.events.map((e) => {
+                                return (
+                                    <option value={e._id}>{e.name}</option>
+                                    // <input 
+                                    // onChange={handleChange}
+                                    // value={formState.eventId}
+                                    // name='eventId'
+                                    // type='text'
+                                    // />
+                                )
+                            })
+                        }
+                    </select>
                 </label>
                 <label>Gift
                     <input 
