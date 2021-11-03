@@ -14,7 +14,6 @@ import { StyledTable } from '../styles'
 // =======================================
 const Dashboard = (props) => {
     console.log(props)
-    // const transactions = props.transactions
 
     const removeTransaction = (id) => {
         console.log('made it here')
@@ -40,9 +39,11 @@ const Dashboard = (props) => {
                 />
                 <StyledTable>
                     <thead>
-                        <th>Event</th>
-                        <th>Recipient</th>
-                        <th>Gift</th>
+                        <tr>
+                            <th>Event</th>
+                            <th>Recipient</th>
+                            <th>Gift</th>
+                        </tr>
                     </thead>
                     <tbody>
                         {
