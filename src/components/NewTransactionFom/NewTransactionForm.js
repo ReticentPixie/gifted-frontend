@@ -46,8 +46,8 @@ const NewTransactionForm = (props) => {
         <>
             <StyledForm onSubmit={handleSubmit}>
                 <label>Recipient
-                    {/* <select name="recipientId" value={formState.recipientId} onChange={handleChange}>
-                        <option>Select a Recipient</option>
+                    <select name="recipientId" value={formState.recipientId} onChange={handleChange}>
+                        <option key="">Select a Recipient</option>
                         {
                             props.recipients.map((r, index) => {
                                 return(
@@ -55,13 +55,7 @@ const NewTransactionForm = (props) => {
                                 )
                             })
                         }
-                    </select> */}
-                    <input 
-                        onChange={handleChange}
-                        value={formState.recipientId}
-                        name='recipientId'
-                        type='text'
-                    />
+                    </select>
                 </label>
                 <label>Event
                     <select name="eventId" value={formState.eventId} onChange={handleChange}>

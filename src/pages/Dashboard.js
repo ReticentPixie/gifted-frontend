@@ -36,6 +36,7 @@ const Dashboard = (props) => {
                 <NewTransactionForm 
                     createTransaction={props.createTransaction} 
                     events={props.events}
+                    recipients={props.recipients}
                 />
                 <StyledTable>
                     <thead>
