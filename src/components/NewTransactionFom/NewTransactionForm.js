@@ -9,7 +9,6 @@ import { StyledForm } from './styles'
 //       DEFINE the COMPONENT
 // =======================================
 const NewTransactionForm = (props) => {
-    console.log(props)
     // ----- Initialize State -----
     const [ formState, setFormState ] = useState({          // set initial state to blank input fields
         eventId: '',

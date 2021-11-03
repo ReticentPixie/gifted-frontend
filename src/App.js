@@ -48,7 +48,6 @@ function App() {
         },
     })
     const allTransactions = await response.json();                   // parse returned json data
-    console.log(allTransactions)
     const usersTransactions = allTransactions.filter(t => {         // filter data for only those managed by the user
         if(t.managedBy === user.uid) {
           return t
@@ -56,7 +55,6 @@ function App() {
     })
     setTransactions(usersTransactions)                             // set transaction state using returned data
   }
-  console.log(transactions)
 
   // ---------- Create A NEW Transaction ----------
   const createTransaction = async transaction => {
@@ -130,7 +128,9 @@ function App() {
     })
     setRecipients(usersRecipients)                                // set recipient state using returned data
   }
-  console.log(recipients)
+  // =================================================
+  //    END - RECIPIENT Helper Functions
+  // =================================================
 
   // =================================================
   //           Initialize useEffect

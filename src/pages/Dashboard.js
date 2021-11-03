@@ -13,10 +13,8 @@ import { StyledTable } from '../styles'
 //       DEFINE the COMPONENT
 // =======================================
 const Dashboard = (props) => {
-    console.log(props)
-
+    // ----- Helper Function - allows deletion of a transaction from the list -----
     const removeTransaction = (id) => {
-        console.log('made it here')
         props.deleteTransaction(id);
         // props.history.push('/');
     }
