@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 // ---------- Components ----------
 import NewTransactionForm from '../components/NewTransactionFom/NewTransactionForm'
+import NewRecipientForm from '../components/RecipientNEW/NewRecipientForm'
 // ---------- Styles ----------
 import { StyledTable } from '../styles'
 
@@ -35,6 +36,9 @@ const Dashboard = (props) => {
                     createTransaction={props.createTransaction} 
                     events={props.events}
                     recipients={props.recipients}
+                />
+                <NewRecipientForm
+                    createRecipient={props.createRecipient}
                 />
                 <StyledTable>
                     <thead>

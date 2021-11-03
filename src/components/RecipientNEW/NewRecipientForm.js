@@ -2,6 +2,7 @@
 //              IMPORTS
 // =======================================
 import { useState } from 'react'
+import { StyledForm } from './styles'
 
 // =======================================
 //       DEFINE the COMPONENT
@@ -14,8 +15,6 @@ const NewRecipientForm = (props) => {
         birthday: '',
         age: '',
         gender: '',
-        likes: [],
-        dislikes: [],
     })
 
     // =======================================
@@ -32,20 +31,52 @@ const NewRecipientForm = (props) => {
     // ----- Handle Submit on Form -----
     const handleSubmit = event => {
         event.preventDefault();                             // prevent default form behavior
-        props.createTransaction(formState);                 // call createTransaction to add form values to existing data
+        props.createRecipient(formState);                 // call createTransaction to add form values to existing data
         setFormState({                                      // clear the form after submission
             name: '',
             birthday: '',
             age: '',
             gender: '',
-            likes: [],
-            dislikes: [],
         })
     }
 
     // ----- RETURN some JSX -----
     return (
-        <h1>Pretend this is the new recipient form</h1>
+        <StyledForm onSubmit={handleSubmit}>
+            <label>Name
+                <input 
+                    onChange={handleChange}
+                    value={formState.name}
+                    name='name'
+                    type='text'
+                />
+            </label>
+            <label>Birthday
+                <input 
+                    onChange={handleChange}
+                    value={formState.birthday}
+                    name='birthday'
+                    type='date'
+                />
+            </label>
+            <label>Age
+                <input 
+                    onChange={handleChange}
+                    value={formState.age}
+                    name='age'
+                    type='number'
+                />
+            </label>
+            <label>Gender
+                <input 
+                    onChange={handleChange}
+                    value={formState.gender}
+                    name='gender'
+                    type='text'
+                />
+            </label>
+            <input className="hvr-grow" type='submit' value='Add New Recipient' />
+        </StyledForm>
     )
 }
 

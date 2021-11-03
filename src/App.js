@@ -128,6 +128,22 @@ function App() {
     })
     setRecipients(usersRecipients)                                // set recipient state using returned data
   }
+
+    // ---------- Create A NEW Transaction ----------
+    const createRecipient = async recipient => {
+      if(!user) return;                                               // prevents non-authenticated reqests to create data
+      const token = await user.getIdToken();                          // get a secure id token from firebase user
+      const data = {...recipient, managedBy: user.uid, likes: [], dislikes: []}              // create the new transaction from form values and add the managedBy field
+      await fetch(`${API_URL}/recipients`, {                        // make fetch request to API
+          method: 'POST',
+          headers: {
+              'Content-type': 'Application/json',
+              'Authorization': 'Bearer ' + token,
+          },
+          body: JSON.stringify(data)
+      })
+      getRecipients();                                               // refresh the transaction list
+    }
   // =================================================
   //    END - RECIPIENT Helper Functions
   // =================================================
@@ -178,6 +194,7 @@ function App() {
               recipients={recipients}
               events={events}
               createTransaction={createTransaction}
+              createRecipient={createRecipient}
               deleteTransaction={deleteTransaction}
             /> 
           ) : <Redirect to="/" />
