@@ -3,6 +3,7 @@
 // =======================================
 import { useState } from 'react'
 import { StyledForm } from './styles'
+import Modal from 'react-modal'
 
 
 // =======================================
@@ -16,6 +17,29 @@ const NewTransactionForm = (props) => {
         recipientId: '',
         date: '',
     })
+
+    // ----- MODAL -----
+    Modal.setAppElement('#root')
+
+    const [ modalIsOpen, setIsOpen ] = useState(false)
+
+    const openModal = () => {
+        setIsOpen(true)
+    }
+
+    const afterOpenModal = () => {
+
+    }
+
+    const closeModal = () => {
+        setIsOpen(false)
+        setFormState({                                      // clear the form after submission
+            eventId: '',
+            giftId: '',
+            recipientId: '',
+            date: '',
+        })
+    }
 
     // =======================================
     //          FORM HELPER FUNCTIONS
@@ -32,6 +56,7 @@ const NewTransactionForm = (props) => {
     const handleSubmit = event => {
         event.preventDefault();                             // prevent default form behavior
         props.createTransaction(formState);                 // call createTransaction to add form values to existing data
+        closeModal()
         setFormState({                                      // clear the form after submission
             eventId: '',
             giftId: '',
@@ -43,49 +68,57 @@ const NewTransactionForm = (props) => {
     // ----- RETURN some JSX -----
     return (
         <>
-            <StyledForm onSubmit={handleSubmit}>
-                <label>Recipient
-                    <select name="recipientId" value={formState.recipientId} onChange={handleChange}>
-                        <option key="">Select a Recipient</option>
-                        {
-                            props.recipients.map((r, index) => {
-                                return(
-                                    <option key={index} value={r._id}>{r.name}</option>
-                                )
-                            })
-                        }
-                    </select>
-                </label>
-                <label>Event
-                    <select name="eventId" value={formState.eventId} onChange={handleChange}>
-                        <option key="">Select an Event</option>
-                        {
-                            props.events.map((e, index) => {
-                                return (
-                                    <option key={index} value={e._id}>{e.name}</option>
-                                )
-                            })
-                        }
-                    </select>
-                </label>
-                <label>Gift
-                    <input 
-                        onChange={handleChange}
-                        value={formState.giftId}
-                        name='giftId'
-                        type='text'
-                    />
-                </label>
-                <label>Date
-                    <input 
-                        onChange={handleChange}
-                        value={formState.date}
-                        name='date'
-                        type='date'
-                    />
-                </label>
-                <input className="hvr-grow" type='submit' value='Log Gift' />
-            </StyledForm>
+            <button onClick={openModal}>Log New Gift</button>
+                <Modal 
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={closeModal}
+                >
+                    <StyledForm onSubmit={handleSubmit}>
+                        <label>Recipient
+                            <select name="recipientId" value={formState.recipientId} onChange={handleChange}>
+                                <option key="">Select a Recipient</option>
+                                {
+                                    props.recipients.map((r, index) => {
+                                        return(
+                                            <option key={index} value={r._id}>{r.name}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </label>
+                        <label>Event
+                            <select name="eventId" value={formState.eventId} onChange={handleChange}>
+                                <option key="">Select an Event</option>
+                                {
+                                    props.events.map((e, index) => {
+                                        return (
+                                            <option key={index} value={e._id}>{e.name}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </label>
+                        <label>Gift
+                            <input 
+                                onChange={handleChange}
+                                value={formState.giftId}
+                                name='giftId'
+                                type='text'
+                            />
+                        </label>
+                        <label>Date
+                            <input 
+                                onChange={handleChange}
+                                value={formState.date}
+                                name='date'
+                                type='date'
+                            />
+                        </label>
+                        <input className="hvr-grow" type='submit' value='Log Gift'/>
+                    </StyledForm>
+                    <button onClick={closeModal}>Cancel</button>
+                </Modal>
         </>
     )
 }

@@ -21,7 +21,7 @@ const Header = (props) => {
                             <li>Welcome, {props.user.displayName}</li>
                             <li><img src={props.user.photoURL} alt={props.user.displayName}/></li>
                             <li className='hvr-grow'><Link to='/dashboard'>Dashboard</Link></li>
-                            <li className='hvr-grow' onClick={logOut}>LogOut</li>
+                            <li className='hvr-grow' onClick={logOut}>Logout</li>
                         </ul>
                     </nav>
                 </StyledHeader>

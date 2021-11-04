@@ -3,6 +3,7 @@
 // =======================================
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
+
 // ---------- Components ----------
 import NewTransactionForm from '../components/NewTransactionFom/NewTransactionForm'
 import NewRecipientForm from '../components/RecipientNEW/NewRecipientForm'
@@ -57,7 +58,10 @@ const Dashboard = (props) => {
                                         {/* <td>{t.recipientId}</td> */}
                                         <td><Link to={`/recipients/${t.recipientId._id}`}>{t.recipientId.name}</Link></td>
                                         <td>{t.giftId}</td>
-                                        <td><button id='delete' onClick={() => {removeTransaction(t._id)}}>DELETE</button></td>
+                                        <td><button 
+                                            id='delete' 
+                                            onClick={() => {if (window.confirm('Are you sure you want to delete this item?')) removeTransaction(t._id)}}
+                                        >DELETE</button></td>
                                     </tr>
                                 )
                             })
