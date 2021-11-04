@@ -3,6 +3,7 @@
 // =======================================
 import { useState } from 'react'
 import { StyledForm } from './styles'
+import { StyledButton } from '../../styles'
 import Modal from 'react-modal'
 
 
@@ -68,7 +69,7 @@ const NewTransactionForm = (props) => {
     // ----- RETURN some JSX -----
     return (
         <>
-            <button onClick={openModal}>Log New Gift</button>
+            <StyledButton onClick={openModal}>Log New Gift</StyledButton>
                 <Modal 
                     isOpen={modalIsOpen}
                     onAfterOpen={afterOpenModal}

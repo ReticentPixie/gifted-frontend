@@ -3,12 +3,11 @@
 // =======================================
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
-
 // ---------- Components ----------
 import NewTransactionForm from '../components/NewTransactionFom/NewTransactionForm'
 import NewRecipientForm from '../components/RecipientNEW/NewRecipientForm'
 // ---------- Styles ----------
-import { StyledTable } from '../styles'
+import { StyledTable, StyledMain } from '../styles'
 
 
 // =======================================
@@ -21,17 +20,15 @@ const Dashboard = (props) => {
         // props.history.push('/');
     }
     
-    // =======================================
-    //          RETURN some JSX
-    // =======================================
+    // ---------- RETURN some JSX ----------
     return (
         <>
             <Helmet>
                 <title>Gifted | {props.user.displayName}'s Dashboard</title>
-                <meta name='description' content='A user friendly gift management system.' />
-                <meta name='keywords' content='React, Gifting, Organization' />
+                <meta name="description" content="A gift tracking and organization app designed to make it simple for gifters to avoid duplicative gifting." />
+                <meta name="keywords" content="React, Gifting, Organization" />
             </Helmet>
-            <div>
+            <StyledMain>
                 <h1><span>Gifting </span>Dashboard</h1>
                 <NewTransactionForm 
                     createTransaction={props.createTransaction} 
@@ -59,8 +56,8 @@ const Dashboard = (props) => {
                                         <td><Link to={`/recipients/${t.recipientId._id}`}>{t.recipientId.name}</Link></td>
                                         <td>{t.giftId}</td>
                                         <td><button 
-                                            id='delete' 
-                                            onClick={() => {if (window.confirm('Are you sure you want to delete this item?')) removeTransaction(t._id)}}
+                                            id="delete"
+                                            onClick={() => {if (window.confirm(`Are you sure you want to delete this item?`)) removeTransaction(t._id)}}
                                         >DELETE</button></td>
                                     </tr>
                                 )
@@ -68,7 +65,7 @@ const Dashboard = (props) => {
                         }
                     </tbody>
                 </StyledTable>
-            </div>
+            </StyledMain>
         </>
     )
 }

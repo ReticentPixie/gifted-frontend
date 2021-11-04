@@ -10,12 +10,37 @@ export const StyledMain = styled.main`
     display: flex;  
     flex-direction: column;
     align-items: center;
-    padding-top: 3rem;
+    padding-top: 1rem;
+    border: 3px solid pink;
+    margin-top: 5rem;
+
+    span {
+        font-family: 'Dancing Script', cursive;
+        font-size: larger;
+    }
+
     @media(min-width: 975px) {
         h1 {
             align-self: flex-start;
             margin-left: 10rem;
         }
+    }
+`
+
+// ---------- BUTTON ----------
+export const StyledButton = styled.button`
+    height: 4em;
+    border-radius: 1% 1em;
+    font-weight: bolder;
+    background-color: #AE2321;
+    color: whitesmoke;
+    border-color: silver;
+    padding: 10px;
+
+    @media(min-width: 650px) {
+        font-size: larger;
+        height: 3em;
+        padding: 15px;
     }
 `
 

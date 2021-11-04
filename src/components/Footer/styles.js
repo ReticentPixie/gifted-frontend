@@ -14,7 +14,7 @@ export const StyledFooter = styled.footer`
     justify-content: center;
     font-style: italic;
     background-color: whitesmoke;
-    position: fixed;
+    /* position: fixed; */
     bottom: 0;
     left: 0;
     width: 100%;
@@ -39,9 +39,5 @@ export const StyledFooter = styled.footer`
     .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
-    }
-
-    @media(min-width: 500px) {
-        position: relative;
     }
 `
