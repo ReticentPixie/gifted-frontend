@@ -40,7 +40,7 @@ const Dashboard = (props) => {
                 <StyledTable>
                     <thead>
                         <tr>
-                            <th colspan="4" className="tableHeading">Gift Log</th>
+                            <th colSpan="4" className="tableHeading">Gift Log</th>
                         </tr>
                         <tr>
                             <th>Event</th>
@@ -61,11 +61,11 @@ const Dashboard = (props) => {
                                             id="delete"
                                             onClick={() => {if (window.confirm(`Are you sure you want to delete this item?`)) removeTransaction(t._id)}}
                                             >
-                                                <i class="fa-solid fa-trash-can"></i>
+                                                <i className="fa-solid fa-trash-can"></i>
                                             </button>
                                             {/* TODO - update edit button to open modal and edit the transaction */}
                                             {/* <button>
-                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                <i className="fa-solid fa-pen-to-square"></i>
                                             </button> */}
                                         </td>
                                     </tr>

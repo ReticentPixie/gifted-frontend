@@ -112,6 +112,7 @@ export const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
     padding: 0 25px;
+    width: 100%;
     label {
         display: flex;
         margin: .5rem 0;
@@ -129,16 +130,50 @@ export const StyledForm = styled.form`
         align-self: center;
         background-color: #AE2321;
         color: white;
-        width: 50%;
         height: 2.5rem;
         margin: 1rem 0;
         font-size: 1.5rem;
         font-weight: 700;
     }
+    .hvr-grow {
+        display: inline-block;
+        vertical-align: middle;
+        -webkit-transform: perspective(1px) translateZ(0);
+        transform: perspective(1px) translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-property: transform;
+        transition-property: transform;
+    }
+    .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+`
 
-    @media(min-width: 975px) {
-        grid-row: 2 / 3;
-        grid-column: 1 / 3;
-        padding-left: 2rem;
+export const StyledModal = styled.section`
+    border: 5px solid pink;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 0;
+    width: 85%;
+    button {
+    background-color: rgba(64, 48, 39);
+    color: whitesmoke;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+    border-radius: 8%;
+    font-weight: bold;
+    width: 125px;
+    }
+    button:hover {
+        background-color: #A60311;
+        cursor: pointer;
+    }
+    .ReactModal_Content, .ReactModal-Content-after-open {
+        width: 100%;
     }
 `
