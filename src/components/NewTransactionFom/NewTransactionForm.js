@@ -69,7 +69,7 @@ const NewTransactionForm = (props) => {
     // ----- RETURN some JSX -----
     return (
         <>
-            <StyledButton onClick={openModal}>Log New Gift</StyledButton>
+            <StyledButton onClick={openModal} className="hvr-grow">Log New Gift</StyledButton>
                 <Modal 
                     isOpen={modalIsOpen}
                     onAfterOpen={afterOpenModal}
@@ -118,7 +118,7 @@ const NewTransactionForm = (props) => {
                         </label>
                         <input className="hvr-grow" type='submit' value='Log Gift'/>
                     </StyledForm>
-                    <button onClick={closeModal}>Cancel</button>
+                    <button onClick={closeModal} className="hvr-grow">Cancel</button>
                 </Modal>
         </>
     )

@@ -66,7 +66,7 @@ const NewRecipientForm = (props) => {
     // ----- RETURN some JSX -----
     return (
         <>
-            <StyledButton onClick={openModal}>Add New Recipient</StyledButton>
+            <StyledButton onClick={openModal} className="hvr-grow">Add New Recipient</StyledButton>
             <Modal 
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}

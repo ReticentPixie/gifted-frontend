@@ -35,7 +35,7 @@ export const StyledForm = styled.form`
         font-weight: 700;
     }
 
-    .hvr-grow {
+    /* .hvr-grow {
         display: inline-block;
         vertical-align: middle;
         -webkit-transform: perspective(1px) translateZ(0);
@@ -49,7 +49,7 @@ export const StyledForm = styled.form`
     .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
-    }
+    } */
 
     @media(min-width: 975px) {
         grid-row: 2 / 3;

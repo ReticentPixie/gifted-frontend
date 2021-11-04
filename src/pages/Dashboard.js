@@ -44,6 +44,7 @@ const Dashboard = (props) => {
                             <th>Event</th>
                             <th>Recipient</th>
                             <th>Gift</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,9 +57,11 @@ const Dashboard = (props) => {
                                         <td><Link to={`/recipients/${t.recipientId._id}`}>{t.recipientId.name}</Link></td>
                                         <td>{t.giftId}</td>
                                         <td><button 
+                                            className="hvr-grow"
                                             id="delete"
                                             onClick={() => {if (window.confirm(`Are you sure you want to delete this item?`)) removeTransaction(t._id)}}
-                                        >DELETE</button></td>
+                                            >DELETE</button>
+                                        </td>
                                     </tr>
                                 )
                             })

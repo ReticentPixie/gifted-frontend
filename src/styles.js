@@ -10,8 +10,7 @@ export const StyledMain = styled.main`
     display: flex;  
     flex-direction: column;
     align-items: center;
-    padding-top: 1rem;
-    border: 3px solid pink;
+    padding: 1rem;
     margin-top: 5rem;
 
     span {
@@ -19,14 +18,23 @@ export const StyledMain = styled.main`
         font-size: larger;
     }
 
-    @media(min-width: 975px) {
-        h1 {
-            align-self: flex-start;
-            margin-left: 10rem;
-        }
+    .hvr-grow {
+        display: inline-block;
+        vertical-align: middle;
+        -webkit-transform: perspective(1px) translateZ(0);
+        transform: perspective(1px) translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-property: transform;
+        transition-property: transform;
+    }
+    
+    .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
     }
 `
-
 // ---------- BUTTON ----------
 export const StyledButton = styled.button`
     height: 4em;
@@ -41,6 +49,35 @@ export const StyledButton = styled.button`
         font-size: larger;
         height: 3em;
         padding: 15px;
+    }
+`
+
+// ---------- TABLE ----------
+export const StyledTable = styled.table`
+    /* border-collapse: collapse; */
+    /* border-spacing: 0; */
+    border: 1px solid silver;
+    width: 100%;
+    th, td {
+        text-align: left;
+        padding: 5px;
+    }
+    tr:nth-child(even) {
+        background-color: lightgray;
+    }
+    thead {
+        background-color: #AE2321;
+        color: whitesmoke
+    }
+    button {
+        background-color: slategray;
+        color: whitesmoke;
+        padding: 5px;
+        border-radius: 5%;
+    }
+  @media(min-width: 750px) {
+        width: 75%;
+        height: 50%;
     }
 `
 
@@ -86,23 +123,5 @@ export const StyledDashboard = styled.section`
     span {
         font-family: 'Dancing Script', cursive;
         font-size: 3em;
-    }
-`
-
-// ---------- TABLE ----------
-export const StyledTable = styled.table`
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    th, td {
-        text-align: left;
-        padding: 5px;
-    }
-    tr:nth-child(even) {
-        background-color: slategray;
-    }
-  @media(min-width: 975px) {
-        width: 60%;
-        height: 50%;
     }
 `
