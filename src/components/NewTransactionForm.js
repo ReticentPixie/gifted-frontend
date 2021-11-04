@@ -2,8 +2,7 @@
 //              IMPORTS
 // =======================================
 import { useState } from 'react'
-import { StyledForm } from './styles'
-import { StyledButton } from '../../styles'
+import { StyledButton, StyledForm } from '../styles'
 import Modal from 'react-modal'
 
 

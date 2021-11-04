@@ -4,8 +4,8 @@
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 // ---------- Components ----------
-import NewTransactionForm from '../components/NewTransactionFom/NewTransactionForm'
-import NewRecipientForm from '../components/RecipientNEW/NewRecipientForm'
+import NewTransactionForm from '../components/NewTransactionForm'
+import NewRecipientForm from '../components/NewRecipientForm'
 // ---------- Styles ----------
 import { StyledTable, StyledMain } from '../styles'
 
@@ -17,7 +17,6 @@ const Dashboard = (props) => {
     // ----- Helper Function - allows deletion of a transaction from the list -----
     const removeTransaction = (id) => {
         props.deleteTransaction(id);
-        // props.history.push('/');
     }
     
     // ---------- RETURN some JSX ----------
