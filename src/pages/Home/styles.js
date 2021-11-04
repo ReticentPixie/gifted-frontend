@@ -45,7 +45,7 @@ export const StyledHomePage = styled.section`
         height: 4em;
         border-radius: 1% 1.75em;
         font-weight: bolder;
-        background-color: #AE2321;
+        background-color: #A60311;
         color: whitesmoke;
         border-color: silver;
         padding: 10px;

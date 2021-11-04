@@ -41,6 +41,9 @@ const Dashboard = (props) => {
                 <StyledTable>
                     <thead>
                         <tr>
+                            <th colspan="4" className="tableHeading">Gift Log</th>
+                        </tr>
+                        <tr>
                             <th>Event</th>
                             <th>Recipient</th>
                             <th>Gift</th>
@@ -52,15 +55,13 @@ const Dashboard = (props) => {
                             props.transactions.map((t) => {
                                 return (
                                     <tr key={t._id}>
-                                        <td>{t.eventId.name}</td>
-                                        {/* <td>{t.recipientId}</td> */}
                                         <td><Link to={`/recipients/${t.recipientId._id}`}>{t.recipientId.name}</Link></td>
+                                        <td>{t.eventId.name}</td>
                                         <td>{t.giftId}</td>
                                         <td><button 
-                                            className="hvr-grow"
                                             id="delete"
                                             onClick={() => {if (window.confirm(`Are you sure you want to delete this item?`)) removeTransaction(t._id)}}
-                                            >DELETE</button>
+                                            ><i class="fa-solid fa-trash-can"></i></button>
                                         </td>
                                     </tr>
                                 )

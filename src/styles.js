@@ -40,7 +40,7 @@ export const StyledButton = styled.button`
     height: 4em;
     border-radius: 1% 1em;
     font-weight: bolder;
-    background-color: #AE2321;
+    background-color: #A60311;
     color: whitesmoke;
     border-color: silver;
     padding: 10px;
@@ -54,26 +54,45 @@ export const StyledButton = styled.button`
 
 // ---------- TABLE ----------
 export const StyledTable = styled.table`
-    /* border-collapse: collapse; */
-    /* border-spacing: 0; */
     border: 1px solid silver;
-    width: 100%;
+    width: 85%;
+    box-shadow: 0 3px 10px silver;
+    margin-top: 20px;
+    a {
+        text-decoration: underline;
+        color: inherit;
+    }
+    a:hover {
+        color: #A60311;
+        font-weight: bold;
+    }
     th, td {
         text-align: left;
         padding: 5px;
     }
+    .tableHeading {
+        text-align: center;
+        font-family: 'Dancing Script', cursive;
+        font-size: xx-large;
+    }
     tr:nth-child(even) {
-        background-color: lightgray;
+        background-color: rgba(64, 48, 39, .1);
     }
     thead {
-        background-color: #AE2321;
-        color: whitesmoke
+        background-color: #403027;
+        color: whitesmoke;
+        height: 2.5rem;
     }
     button {
-        background-color: slategray;
+        background-color: rgba(64, 48, 39);
         color: whitesmoke;
-        padding: 5px;
-        border-radius: 5%;
+        padding: 5px 10px;
+        border-radius: 25%;
+        font-weight: bold
+    }
+    button:hover {
+        background-color: #A60311;
+        cursor: pointer;
     }
   @media(min-width: 750px) {
         width: 75%;
