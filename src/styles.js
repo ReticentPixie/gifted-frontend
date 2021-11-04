@@ -7,9 +7,16 @@ import styled from 'styled-components';
 // ---------- STYLED MAIN ----------
 export const StyledMain = styled.main`
     flex-grow: 1;
-    display: flex;
+    display: flex;  
     flex-direction: column;
     align-items: center;
+    padding-top: 3rem;
+    @media(min-width: 975px) {
+        h1 {
+            align-self: flex-start;
+            margin-left: 10rem;
+        }
+    }
 `
 
 // ---------- SECTION ----------

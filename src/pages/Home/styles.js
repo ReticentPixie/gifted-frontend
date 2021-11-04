@@ -12,26 +12,8 @@ export const StyledHomePage = styled.section`
         object-fit: cover;
     }
 
-    div {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-    }
-
     span {
         font-family: 'Dancing Script', cursive;
-    }
-
-    button {
-        height: 4em;
-        border-radius: 1% 1.75em;
-        font-weight: bolder;
-        background-color: #AE2321;
-        color: whitesmoke;
-        border-color: silver;
-        padding: 10px;
     }
 
     .hvr-grow {
@@ -50,7 +32,25 @@ export const StyledHomePage = styled.section`
         transform: scale(1.1);
     }
 
-    @media(min-width: 475px) {
+    div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    button {
+        height: 4em;
+        border-radius: 1% 1.75em;
+        font-weight: bolder;
+        background-color: #AE2321;
+        color: whitesmoke;
+        border-color: silver;
+        padding: 10px;
+    }
+
+    @media(min-width: 360px) {
         div {
             position: absolute;
             top: 30%;
