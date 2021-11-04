@@ -61,7 +61,13 @@ const Dashboard = (props) => {
                                         <td><button 
                                             id="delete"
                                             onClick={() => {if (window.confirm(`Are you sure you want to delete this item?`)) removeTransaction(t._id)}}
-                                            ><i class="fa-solid fa-trash-can"></i></button>
+                                            >
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                            {/* TODO - update edit button to open modal and edit the transaction */}
+                                            {/* <button>
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button> */}
                                         </td>
                                     </tr>
                                 )

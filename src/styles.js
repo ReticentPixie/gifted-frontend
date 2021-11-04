@@ -87,8 +87,11 @@ export const StyledTable = styled.table`
         background-color: rgba(64, 48, 39);
         color: whitesmoke;
         padding: 5px 10px;
+        margin-right: 5px;
+        margin-left: 5px;
         border-radius: 25%;
-        font-weight: bold
+        font-weight: bold;
+
     }
     button:hover {
         background-color: #A60311;
