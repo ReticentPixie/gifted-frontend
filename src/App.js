@@ -48,7 +48,7 @@ function App() {
         },
     })
     const allTransactions = await response.json();                   // parse returned json data
-    const usersTransactions = allTransactions.filter(t => {         // filter data for only those managed by the user
+    const usersTransactions = await allTransactions.filter(t => {         // filter data for only those managed by the user
         if(t.managedBy === user.uid) {
           return t
         }
@@ -121,7 +121,7 @@ function App() {
         },
     })
     const allRecipients = await response.json();                     // parse returned json data
-    const usersRecipients = allRecipients.filter(r => {             // filter data for only data managed by the user
+    const usersRecipients = await allRecipients.filter(r => {             // filter data for only data managed by the user
         if(r.managedBy === user.uid) {
           return r
         }
