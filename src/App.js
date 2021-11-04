@@ -31,8 +31,8 @@ function App() {
   const fetchRecipients = useRef(null)
 
   // ---------- API URLS ----------
-  const API_URL=`http://localhost:3001/api`               // development url
-  // TODO: add heroku url                                 // production url
+  // const API_URL=`http://localhost:3001/api`                      // development url
+  const API_URL=`https://gifted-api.herokuapp.com/api`              // production url
 
   // =================================================
   //    START - Transaction Helper Functions
