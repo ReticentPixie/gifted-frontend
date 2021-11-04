@@ -51,7 +51,7 @@ function App() {
     const usersTransactions = await allTransactions.filter(t => {         // filter data for only those managed by the user
         if(t.managedBy === user.uid) {
           return t
-        }
+        } else return false
     })
     setTransactions(usersTransactions)                             // set transaction state using returned data
   }
@@ -124,7 +124,7 @@ function App() {
     const usersRecipients = await allRecipients.filter(r => {             // filter data for only data managed by the user
         if(r.managedBy === user.uid) {
           return r
-        }
+        } else return false
     })
     setRecipients(usersRecipients)                                // set recipient state using returned data
   }
