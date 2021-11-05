@@ -1,4 +1,4 @@
-# Gifted 
+# Gifted   [![Netlify Status](https://api.netlify.com/api/v1/badges/df0076cd-4b10-4180-bed3-75b0c917df78/deploy-status)](https://app.netlify.com/sites/gifted-react-app/deploys)
 Gifted is a gift tracking and organization app designed to make it simple for users to know exactly what they've given to their love ones over time. Gifted is a full-stack MERN application built to solve a hurdle I encounter every year...avoiding duplicative gifts to my many nieces and nephews. With a user-friendly React frontend supported by a powerful Express API (checkout the backend [here](https://github.com/ReticentPixie/gifted-api)), Gifted simplifies gift tracking and makes organization simple and fun. For added security and piece of mind, Gifted utilizes [Google Firebase](https://firebase.google.com) authentication on both the front and back end.
 
 # Check out the app **[here](https://gifted-react-app.netlify.app)**
