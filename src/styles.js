@@ -12,7 +12,7 @@ export const StyledMain = styled.main`
     flex-direction: column;
     align-items: center;
     padding: 1rem;
-    margin-top: 5rem;
+    /* margin-top: 5rem; */
 
     span {
         font-family: 'Dancing Script', cursive;
@@ -134,6 +134,7 @@ export const StyledForm = styled.form`
         margin: 1rem 0;
         font-size: 1.5rem;
         font-weight: 700;
+        width: 250px;
     }
     .hvr-grow {
         display: inline-block;
@@ -146,6 +147,7 @@ export const StyledForm = styled.form`
         -webkit-transition-property: transform;
         transition-property: transform;
     }
+    
     .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
@@ -153,12 +155,12 @@ export const StyledForm = styled.form`
 `
 
 export const StyledModal = styled.section`
-    border: 5px solid pink;
+    /* border: 5px solid pink; */
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-right: 0;
-    width: 85%;
+    width: 100%;
     button {
     background-color: rgba(64, 48, 39);
     color: whitesmoke;
@@ -173,7 +175,10 @@ export const StyledModal = styled.section`
         background-color: #A60311;
         cursor: pointer;
     }
-    .ReactModal_Content, .ReactModal-Content-after-open {
-        width: 100%;
+
+    @media(min-width: 750px) {
+        .ReactModal_Content, .ReactModal-Content-after-open {
+            width: 100%;
+        }
     }
 `

@@ -17,8 +17,8 @@ export const StyledHeader = styled.header`
     box-shadow: 1px 1px 3px 2px whitesmoke;
     /* position: fixed;
     top: 0;
-    left: 0;
-    width: 100%; */
+    left: 0; */
+    width: 100%;
     
     h1{
         font-family: 'Dancing Script', cursive;

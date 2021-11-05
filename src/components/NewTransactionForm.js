@@ -73,6 +73,7 @@ const NewTransactionForm = (props) => {
                     isOpen={modalIsOpen}
                     onAfterOpen={afterOpenModal}
                     onRequestClose={closeModal}
+
                 >
                     <StyledModal>
                         <StyledForm onSubmit={handleSubmit}>
