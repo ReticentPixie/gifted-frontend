@@ -12,8 +12,8 @@ const Show = (props) => {
         <>
             <Helmet>
                 <title>Gifted | Recipient Profile</title>
-                <meta name='description' content='TODO: Update keywords' />
-                <meta name='keywords' content='TODO: Update keywords' />
+                <meta name="description" content="A gift tracking and organization app designed to make it simple for gifters to avoid duplicative gifting." />
+                <meta name="keywords" content="React, Gifting, Organization" />
             </Helmet>
             <StyledMain>
                 <h1>Name: <span className="recipientName">{props.recipient.name}</span></h1>
