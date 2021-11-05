@@ -2,7 +2,7 @@
 //              IMPORTS
 // =======================================
 import { useState } from 'react'
-import { StyledButton, StyledForm } from '../styles'
+import { StyledButton, StyledForm, StyledModal } from '../styles'
 import Modal from 'react-modal'
 
 // =======================================
@@ -65,48 +65,50 @@ const NewRecipientForm = (props) => {
     // ----- RETURN some JSX -----
     return (
         <>
-            <StyledButton onClick={openModal} className="hvr-grow">Add New Recipient</StyledButton>
+            <StyledButton onClick={openModal} className="hvr-grow">Add  <i className="fas fa-user"></i></StyledButton>
             <Modal 
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
             >
-                <StyledForm onSubmit={handleSubmit}>
-                    <label>Name
-                        <input 
-                            onChange={handleChange}
-                            value={formState.name}
-                            name='name'
-                            type='text'
-                        />
-                    </label>
-                    <label>Birthday
-                        <input 
-                            onChange={handleChange}
-                            value={formState.birthday}
-                            name='birthday'
-                            type='date'
-                        />
-                    </label>
-                    <label>Age
-                        <input 
-                            onChange={handleChange}
-                            value={formState.age}
-                            name='age'
-                            type='number'
-                        />
-                    </label>
-                    <label>Gender
-                        <input 
-                            onChange={handleChange}
-                            value={formState.gender}
-                            name='gender'
-                            type='text'
-                        />
-                    </label>
-                    <input className="hvr-grow" type='submit' value='Add New Recipient' />
-                </StyledForm>
-                <button onClick={closeModal}>Cancel</button>
+                <StyledModal>
+                    <StyledForm onSubmit={handleSubmit}>
+                        <label>Name
+                            <input 
+                                onChange={handleChange}
+                                value={formState.name}
+                                name='name'
+                                type='text'
+                            />
+                        </label>
+                        <label>Birthday
+                            <input 
+                                onChange={handleChange}
+                                value={formState.birthday}
+                                name='birthday'
+                                type='date'
+                            />
+                        </label>
+                        <label>Age
+                            <input 
+                                onChange={handleChange}
+                                value={formState.age}
+                                name='age'
+                                type='number'
+                            />
+                        </label>
+                        <label>Gender
+                            <input 
+                                onChange={handleChange}
+                                value={formState.gender}
+                                name='gender'
+                                type='text'
+                            />
+                        </label>
+                        <input className="hvr-grow" type='submit' value='Add Recipient' />
+                    </StyledForm>
+                    <button onClick={closeModal}>Cancel</button>
+                </StyledModal>
             </Modal>
         </>
     )

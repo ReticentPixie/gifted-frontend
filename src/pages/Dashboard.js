@@ -29,24 +29,26 @@ const Dashboard = (props) => {
             </Helmet>
             <StyledMain>
                 <h1><span>Gifting </span>Dashboard</h1>
-                <NewTransactionForm 
-                    createTransaction={props.createTransaction} 
-                    events={props.events}
-                    recipients={props.recipients}
-                />
-                <NewRecipientForm
-                    createRecipient={props.createRecipient}
-                />
+                <div className="buttons">
+                    <NewTransactionForm 
+                        createTransaction={props.createTransaction} 
+                        events={props.events}
+                        recipients={props.recipients}
+                    />
+                    <NewRecipientForm
+                        createRecipient={props.createRecipient}
+                    />
+                </div>
                 <StyledTable>
                     <thead>
                         <tr>
                             <th colSpan="4" className="tableHeading">Gift Log</th>
                         </tr>
                         <tr>
-                            <th>Event</th>
-                            <th>Recipient</th>
-                            <th>Gift</th>
-                            <th>Actions</th>
+                            <th>EVENT</th>
+                            <th>RECIPIENT</th>
+                            <th>GIFT</th>
+                            <th>ACTIONS</th>
                         </tr>
                     </thead>
                     <tbody>

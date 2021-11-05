@@ -1,8 +1,6 @@
 // ========== IMPORTS ==========
 import styled from 'styled-components';
 
-// TODO - add styling to 'add new transaction form'
-// TODO - add styling to recent transactions table
 
 // ========== STYLED COMPONENTS ==========
 // ---------- MAIN ----------
@@ -13,6 +11,15 @@ export const StyledMain = styled.main`
     align-items: center;
     padding: 1rem;
     /* margin-top: 5rem; */
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        @media(min-width: 500px) {
+            flex-direction: row;
+            gap: 50px;
+        }
+    }
 
     span {
         font-family: 'Dancing Script', cursive;
@@ -41,6 +48,7 @@ export const StyledButton = styled.button`
     height: 4em;
     border-radius: 1% 1em;
     font-weight: bolder;
+    font-size: 1.25rem;
     background-color: #A60311;
     color: whitesmoke;
     border-color: silver;
@@ -48,10 +56,10 @@ export const StyledButton = styled.button`
     margin-top: 10px;
     margin-bottom: 15px;
 
-    @media(min-width: 650px) {
-        font-size: larger;
-        height: 3em;
-        padding: 15px;
+    @media(min-width: 500px) {
+        font-size: 1.75rem;
+        height: 2.25em;
+        padding: 10px 15px;
     }
 `
 
@@ -77,18 +85,22 @@ export const StyledTable = styled.table`
     .tableHeading {
         text-align: center;
         font-family: 'Dancing Script', cursive;
-        font-size: xx-large;
+        font-size: 2rem;
+        background-image: url('https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80');
     }
     tr:nth-child(even) {
         background-color: rgba(64, 48, 39, .1);
     }
     thead {
         background-color: #403027;
+        background-image: url('https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80');
         color: whitesmoke;
+        font-size: 1.3rem;
         height: 2.5rem;
     }
     button {
         background-color: rgba(64, 48, 39);
+        background-image: url('https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80');
         color: whitesmoke;
         padding: 5px 10px;
         margin-right: 5px;
@@ -99,6 +111,7 @@ export const StyledTable = styled.table`
     }
     button:hover {
         background-color: #A60311;
+        background-image: url('https://images.unsplash.com/photo-1518893063132-36e46dbe2428?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cmVkJTIwYm93c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60');
         cursor: pointer;
     }
   @media(min-width: 750px) {
@@ -163,6 +176,7 @@ export const StyledModal = styled.section`
     width: 100%;
     button {
     background-color: rgba(64, 48, 39);
+    background-image: url('https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80');
     color: whitesmoke;
     padding: 5px 10px;
     margin-right: 5px;
@@ -173,6 +187,7 @@ export const StyledModal = styled.section`
     }
     button:hover {
         background-color: #A60311;
+        background-image: url('https://images.unsplash.com/photo-1518893063132-36e46dbe2428?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cmVkJTIwYm93c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60');
         cursor: pointer;
     }
 

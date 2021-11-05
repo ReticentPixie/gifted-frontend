@@ -68,7 +68,7 @@ const NewTransactionForm = (props) => {
     // ----- RETURN some JSX -----
     return (
         <>
-            <StyledButton onClick={openModal} className="hvr-grow">Log New Gift</StyledButton>
+            <StyledButton onClick={openModal} className="hvr-grow">New  <i className="fas fa-gift"></i></StyledButton>
                 <Modal 
                     isOpen={modalIsOpen}
                     onAfterOpen={afterOpenModal}
