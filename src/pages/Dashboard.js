@@ -45,8 +45,8 @@ const Dashboard = (props) => {
                             <th colSpan="4" className="tableHeading">Gift Log</th>
                         </tr>
                         <tr>
-                            <th>EVENT</th>
                             <th>RECIPIENT</th>
+                            <th>EVENT</th>
                             <th>GIFT</th>
                             <th>ACTIONS</th>
                         </tr>
