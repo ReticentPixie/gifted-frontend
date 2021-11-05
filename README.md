@@ -25,6 +25,7 @@ Gifted is a gift tracking and organization app designed to make it simple for us
 # IceBox - Future Features 
 Gifted is poised and ready to scale both as my coding-prowess grows and users' needs increase. Future features are already under development.<br>
 ![Future Features](/public/images/Coming-Soon.png)<br>
+- Loading indicators to alert users of data status
 - A recipient profile page where users will be able to see, create, and edit key details about their loved ones that inspire their gifting choices
 - Further styling enhancements such as refined modals to align with the app's overall mobile first design appraoch
 - Sortable/Searchable transactions tables - to place information at a user's fingertips as their gifting log grows
